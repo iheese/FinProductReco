@@ -17,10 +17,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CartService {
-	
+
 	private final CartRepository cartRepository;
 	private final ModelMapper modelMapper;
-	
+
 	//카트 목록 조회
 	@Transactional(readOnly=true)
 	public List<ProductDto> getProducts(Long cartId){
@@ -44,14 +44,14 @@ public class CartService {
 			System.out.println(pro);
 		}
 	}
-	
-	// 카트에서 삭제 
+
+	// 카트에서 삭제
 	@Transactional
-    public void deleteInCart(Long cartId, Long productId) {
+	public void deleteInCart(Long cartId, Long productId) {
 		Cart findCart = cartRepository.findById(cartId).get();
 		findCart.getProducts().remove(productId.intValue());
 		cartRepository.save(findCart);
-		
+
 		for(Product pro: cartRepository.findById(cartId).get().getProducts()) {
 			System.out.println(pro);
 		}
