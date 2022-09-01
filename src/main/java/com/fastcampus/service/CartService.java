@@ -28,7 +28,7 @@ public class CartService {
 	modelMapper.map(productDto, Product.class);
 	findCart.getProducts().add(product); cartRepository.save(findCart); }
 	
-	/* 강소영
+	/* 
 	// 카트에 상품 등록
 	@Transactional
     public Long order(Long usreId, float interestRate, long amount, long repayPeriod, String agency, Long cartCount, JobType job, int age) {

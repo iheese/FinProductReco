@@ -112,7 +112,7 @@ public class CartController {
 			cartService.deleteAllInCart(cartId);
 		}
 
-		/* 강소영
+		/* 
 		// 카트에 상품 등록
 		@PostMapping("/cart")
 		public Long cart(@RequestBody CreateProductRequest request) {
