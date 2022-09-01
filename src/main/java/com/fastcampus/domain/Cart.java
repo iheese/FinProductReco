@@ -39,4 +39,9 @@ public class Cart {
 	public Cart(User user) {
 		this.user=user;
 	}
+	
+	// 연관관계 편의 메소드
+	public void addProduct(Product product) {
+        products.add(product);
+    }
 }
