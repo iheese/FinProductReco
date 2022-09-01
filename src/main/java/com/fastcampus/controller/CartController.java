@@ -1,6 +1,7 @@
 package com.fastcampus.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.EnumType;
@@ -9,6 +10,8 @@ import javax.persistence.Enumerated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fastcampus.domain.Cart;
@@ -18,6 +21,10 @@ import com.fastcampus.persistence.CartRepository;
 import com.fastcampus.persistence.ProductRepository;
 import com.fastcampus.service.CartService;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +38,18 @@ public class CartController {
 	private final ProductRepository productRepository;
 
 	// 카트에서 상품목록 조회
-	@GetMapping("/carts")
-	public List<CartDto> ordersV2() {
-		List<Cart> carts = cartRepository.findAll();
-		List<CartDto> result = carts.stream().map(c -> new CartDto(c)).collect(Collectors.toList());
+	@GetMapping("/carts/{cartId}")
+	public Result carts(@PathVariable Long cartId) {
+		Optional<Cart> carts = cartRepository.findById(cartId);
+		List<CartDto> collect = carts.stream().map(c -> new CartDto(c)).collect(Collectors.toList());
 
-		return result;
+		return new Result(collect);
+	}
+
+	@Data
+	@AllArgsConstructor
+	static class Result<T> { // json을 배열 타입이 아니라 객체 타입으로 반환시켜서 api 스펙 확장이 유연하도록
+		private T data;
 	}
 
 	@Getter
@@ -46,7 +59,7 @@ public class CartController {
 
 		public CartDto(Cart cart) {
 			cartId = cart.getId();
-			products = cart.getProducts().stream() // DTO 안의 엔티티도 DTO로 변
+			products = cart.getProducts().stream() // DTO 안의 엔티티도 DTO로 변환
 					.map(product -> new ProductDto(product)).collect(Collectors.toList());
 		}
 	}
@@ -77,6 +90,7 @@ public class CartController {
 			age = product.getAge();
 		}
 
+		// 카트에 상품 등록
 		@ApiOperation(value = "장바구니에 상품 추가", notes = "상품 정보를 가져와서 장바구니에 등록해준다.")
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = "cartId", value = "장바구니 아이디", dataType = "Long", paramType = "path", required = true),
@@ -97,5 +111,27 @@ public class CartController {
 		public void deleteAllInCart(@PathVariable Long cartId) {
 			cartService.deleteAllInCart(cartId);
 		}
+
+		/* 강소영
+		// 카트에 상품 등록
+		@PostMapping("/cart")
+		public Long cart(@RequestBody CreateProductRequest request) {
+
+			Long id = cartService.cart(interestRate, amount, repayPeriod, agency, cartCount, job, age);
+			return id;
+		}
+
+		@Data
+		static class CreateProductRequest {
+			Long usreId;
+			float interestRate;
+			long amount;
+			long repayPeriod;
+			String agency;
+			Long cartCount;
+			JobType job;
+			int age;
+		}
+		*/
 	}
 }
