@@ -1,5 +1,6 @@
 package com.fastcampus.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,7 +39,6 @@ public class User extends BaseTime {
 
 	private int age; //유저 나이
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="cart_id")
+	@OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
 	private Cart cart;
 }
