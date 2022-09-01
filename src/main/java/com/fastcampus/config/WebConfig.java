@@ -18,8 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
             "/error/**",
             "/v2/api-docs",
             "/swagger-resources/**",
-            "/swagger-ui/**",
-            "/carts/*",
+            "/swagger-ui/**"
     };
     
     private final JwtInterceptor jwtInterceptor;
