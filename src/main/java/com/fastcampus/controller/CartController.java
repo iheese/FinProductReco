@@ -82,10 +82,8 @@ public class CartController {
     }
 	
     // 카트에서 상품 삭제
-    @DeleteMapping("/carts/{product.id}")
-    public void deleteFromCart(@PathVariable long id) {
-    	cartService.deleteFromCart(id);
-    }
+    // @DeleteMapping("/carts/{product.id}")
+    
     
     
 }

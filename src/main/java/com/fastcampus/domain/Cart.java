@@ -39,14 +39,5 @@ public class Cart {
 		this.user=user;
 	}
 	
-	/*
-	// 비즈니스 메소드 (카트에서 삭제 -> 테이블의 변화)  
-	public void cancel(Long id, int count) {
-		
-		// Product의 cartCount -1
-        for (Product product : products) {
-            product.addCartCount(count);   
-        }
-    }
-    */
+
 }
