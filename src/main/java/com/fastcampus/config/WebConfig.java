@@ -13,22 +13,14 @@ import lombok.RequiredArgsConstructor;
 public class WebConfig implements WebMvcConfigurer {
     //접근 제한 없는 URI
 	private static final String[] EXCLUDE_PATHS = {
-<<<<<<< HEAD
 			"/login",
-=======
-			      "/login",
->>>>>>> 200e550b518775bdd91549197c97d82b588fa10b
             "/users",
             "/error/**",
             "/v2/api-docs",
             "/swagger-resources/**",
-<<<<<<< HEAD
-            "/swagger-ui/**"
-=======
             "/swagger-ui/**",
             "/products",
             "/products/*"   
->>>>>>> 200e550b518775bdd91549197c97d82b588fa10b
     };
     
     private final JwtInterceptor jwtInterceptor;
