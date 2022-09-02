@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fastcampus.dto.ProductDto;
+
+import com.fastcampus.persistence.CartRepository;
 import com.fastcampus.service.CartService;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -33,6 +34,7 @@ public class CartController {
 	public List<ProductDto> getProducts(@PathVariable Long cartId) {
 		return cartService.getProducts(cartId);
 	}
+	
 
 	// 카트에 상품 등록
 	@ApiOperation(value = "장바구니에 상품 추가", notes = "상품 정보를 가져와서 장바구니에 등록해준다.")
