@@ -10,7 +10,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class BeanConfig {
 
-    // ModelMapper ºó µî·Ï
+    // ModelMapper 빈 등록
     @Bean
     ModelMapper modelMapper() {
         return new ModelMapper();
