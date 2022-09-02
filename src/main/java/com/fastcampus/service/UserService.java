@@ -76,7 +76,6 @@ public class UserService {
 			throw new IllegalStateException(USERNAME_EXIST_EXCEPTION_MSG);
 		}
 	}
-
 	
 	// 유저 상세 조회
 	@Transactional(readOnly = true)
