@@ -10,15 +10,15 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class BeanConfig {
 
-	// ModelMapper 빈 등록
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
+    // ModelMapper ºó µî·Ï
+    @Bean
+    ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 	
 	// CORS 처리
 	@Bean
-	public static CorsFilter corsFilter() {
+	static CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 			config.setAllowCredentials(true); // 내서버가 응답을 할 때 json을 자바스크립트에서 처리할 수 있게 할지를 설정
