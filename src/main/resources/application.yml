@@ -5,24 +5,23 @@ server:
 # 데이터 소스 설정
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem://localhost/~/test
-    username: sa
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://15.164.76.177:3306/root?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true
+    username: root
+    password: rootroot
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
     
 # JPA 설정
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: update
-      use-new-id-generator-mappings: false
-    properties[hibernate.format_sql]: true
+    jpa:
+      show-sql: true
+      database: mysql
+      hibernate:
+        ddl-auto: validate
+      properties:
+      hibernate:
+        format_sql: true
 
 ## sql 문 자동실행
   sql:
