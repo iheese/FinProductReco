@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fastcampus.domain.Cart;
 import com.fastcampus.domain.User;
 import com.fastcampus.dto.UserDto;
-import com.fastcampus.persistence.CartRepository;
 import com.fastcampus.persistence.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 
 	private final UserRepository userRepository;
-	private final CartRepository cartRepository;
 	private final ModelMapper modelMapper;
 	
 	private static final String LOGIN_EXCEPTION_MSG = "로그인정보가 일치하지 않습니다.";
@@ -88,13 +86,6 @@ public class UserService {
 		return userDto;
 	}
 	
-	/*
-	// 회원 상세 조회
-	public List<User> findUsers() {
-        return userRepository.findAll();
-    }
-    */
-
 	// 회원 정보 수정
 	@Transactional
 	public UserDto updateUser(UserDto userDto, Long id) {  
