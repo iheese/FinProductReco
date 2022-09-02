@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
             "/swagger-resources/**",
             "/swagger-ui/**",
             "/products",
-            "/products/*"   
+            "/products/**"   
     };
     
     private final JwtInterceptor jwtInterceptor;
