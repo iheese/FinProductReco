@@ -14,16 +14,16 @@ spring:
       matching-strategy: ant-path-matcher
     
 # JPA 설정
-    jpa:
-      show-sql: true
-      database: mysql
-      hibernate:
-        ddl-auto: validate
-      properties:
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: validate
+    properties:
       hibernate:
         format_sql: true
 
 ## sql 문 자동실행
-  sql:
-    init:
-      mode: always   
+#  sql:
+#    init:
+#      mode: always   
