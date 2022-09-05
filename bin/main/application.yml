@@ -1,0 +1,29 @@
+# 서버 설정
+server:
+  port: 8080
+
+# 데이터 소스 설정
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://15.164.76.177:3306/root?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true
+    username: root
+    password: rootroot
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+    
+# JPA 설정
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+## sql 문 자동실행
+#  sql:
+#    init:
+#      mode: always   
